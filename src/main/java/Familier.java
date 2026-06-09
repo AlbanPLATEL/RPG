@@ -1,0 +1,22 @@
+import java.io.*;
+import java.util.*;
+
+
+public class Familier extends Entité {
+    private int id;
+    private String nom;
+    private String age;
+    private Rareté rareté;
+    private int XP;
+
+    public Familier() {
+    }
+
+    public void voirFamilier() {
+        // TODO implement here
+    }
+
+    public void attaquerEnnemi(Ennemi e) {
+        // TODO implement here
+    }
+}
