@@ -6,12 +6,12 @@ public class Player extends Entite {
     private int PM;
     private int armure;
     private int bouclier;
-    private int or;
+    private int OR;
     private int niveau;
     private Statistique statistiques;
-    private Equipement équipement;
+    private Equipement equipement;
     private List<Effet> effetsActifs;
-    private int pointsCompétence;
+    private int pointsCompetence;
     private Inventaire inventaire;
 
     public Player() {
@@ -23,6 +23,7 @@ public class Player extends Entite {
         niveau = 0;
         XP = 0;
         inventaire = new Inventaire();
+        OR = 0;
     }
 
     public void attaquerEnnemi(Ennemi ennemi) {
@@ -34,7 +35,7 @@ public class Player extends Entite {
 
         if (ennemi.getHP() <= 0){
             System.out.println("Mort de l'ennemi !");
-            gagnerXP(ennemi);
+            gagnerLoot(ennemi);
         }
     }
 
@@ -80,10 +81,9 @@ public class Player extends Entite {
         // TODO implement here
     }
 
-    public void gagnerXP(Ennemi ennemi) {
-        if (!ennemi.estVivant()){
-            XP += 2;
-        }
+    public void gagnerLoot(Ennemi ennemi) {
+       this.XP = ennemi.getXP();
+       this.OR = ennemi.getOR();
     }
 
     public void niveau(){
@@ -159,6 +159,14 @@ public class Player extends Entite {
 
     public void setXP(int XP) {
         this.XP = XP;
+    }
+
+    public int getOR() {
+        return OR;
+    }
+
+    public void setOR(int OR) {
+        this.OR = OR;
     }
 
     public int getHP() {

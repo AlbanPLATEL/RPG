@@ -28,7 +28,7 @@ public class Inventaire {
             } catch (Exception e) {
                 System.out.println("Entrée invalide.");
             }
-            if (text.equals("FIN") || text.equals("Fin") ) {
+            if (text.equals("\nFIN") || text.equals("\nFin") || text.equals("\nfin")) {
                 ouvrir = false;
             }
         }

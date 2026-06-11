@@ -10,7 +10,7 @@ public class Main {
         while (player.estVivant() && ennemi.estVivant()) {
             System.out.println("\nTour : " + tour);
             System.out.println("\nNom de l'Aventurier : " + player.getNom());
-            System.out.println("HP du joueur : " + player.getHP() + " | Défense : " + player.getArmure() + " | Niveau : " + player.getNiveau() + " | XP : " + player.getXP());
+            System.out.println("HP du joueur : " + player.getHP() + " | Défense : " + player.getArmure() + " | Niveau : " + player.getNiveau() + " | XP : " + player.getXP() + " | OR : " + player.getOR());
             System.out.println("HP de l'ennemi : " + ennemi.getHP() + " | Niveau : " + player.getNiveau());
             System.out.println("\nChoisissez votre action : ");
             System.out.println("1. Attaquer");
@@ -30,10 +30,10 @@ public class Main {
         }
 
         System.out.println("\n--- Fin du combat ---");
-        if (!ennemi.estVivant()) {
-            System.out.println("VICTOIRE ! Vous avez fait mordre la poussière au monstre.");
-        } else {
-            System.out.println("DEFAITE... Votre quête s'achève ici, Aventurier.");
-        }
+        ennemi.dropLoot();
+        System.out.println("\nTour : " + tour);
+        System.out.println("\nNom de l'Aventurier : " + player.getNom());
+        System.out.println("HP du joueur : " + player.getHP() + " | Défense : " + player.getArmure() + " | Niveau : " + player.getNiveau() + " | XP : " + player.getXP() + " | OR : " + player.getOR());
+        System.out.println("HP de l'ennemi : " + ennemi.getHP() + " | Niveau : " + player.getNiveau());
     }
 }

@@ -4,12 +4,17 @@ public class Ennemi extends Entite {
     private int HP;
     private int niveau;
     private int degatsBase;
+    private int OR;
+    private int XP;
 
     public Ennemi() {
         super();
+        Random random = new Random();
         HP = 50;
         niveau = 0;
         degatsBase = 0;
+        OR = random.nextInt(5)+1;
+        XP = random.nextInt(5)+1;
     }
 
     public void attaquerJoueur(Player player) {
@@ -21,21 +26,31 @@ public class Ennemi extends Entite {
             System.out.println("L'ennemi vous infliges " + degatsBase + " dégâts.");
 
             if (player.getBouclier() > 0) {
-                System.out.println("Votre bouclier et votre armure vous protèges");
+                System.out.println("Votre bouclier vous protèges.");
             } else if (player.getArmure() > 0) {
-                System.out.println("Votre armure n'a pas suffit à arrêter l'attaque.");
+                System.out.println("Votre armure vous protèges.");
             }
 
             // Calcul des dégâts finaux
             int degatsSubis = degatsBase - defenseTotale;
 
             if (degatsSubis <= 0) {
-                System.out.println("\nINCROYABLE ! Votre défense a totalement absorbé l'impact.");
+                System.out.println("\nHeureusement que votre bouclier a totalement absorbé l'impact.");
             } else {
                 player.setHP(player.getHP() - degatsSubis);
                 System.out.println("Vous perdez " + degatsSubis + " PV");
 
             }
+        }
+    }
+
+    public void dropLoot() {
+        Random random = new Random();
+        if (!estVivant()) {
+            System.out.println("VICTOIRE ! Vous avez vaincu le monstre.");
+            System.out.println("Vous avez gagné " + getXP() + " xp et " + getOR() + " or.");
+        } else {
+            System.out.println("DEFAITE... Votre quête s'achève ici, Aventurier.");
         }
     }
 
@@ -61,5 +76,20 @@ public class Ennemi extends Entite {
 
     public void setNiveau(int niveau) {
         this.niveau = niveau;
+    }
+
+    public int getOR() {
+        return OR;
+    }
+    public void setOR(int OR) {
+        this.OR = OR;
+    }
+
+    public int getXP() {
+        return XP;
+    }
+
+    public void setXP(int XP) {
+        this.XP = XP;
     }
 }
