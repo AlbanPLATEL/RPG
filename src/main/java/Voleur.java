@@ -10,4 +10,5 @@ public class Voleur extends Classe {
 
     public void esquiveFatale() {
         // TODO implement here}
+    }
 }

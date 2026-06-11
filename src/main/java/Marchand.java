@@ -3,7 +3,6 @@ import java.util.*;
 
 
 public class Marchand extends PNJ {
-    private  Map<Item, int> stock;
     private int or;
 
     public Marchand() {

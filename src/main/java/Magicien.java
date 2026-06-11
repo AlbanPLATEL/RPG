@@ -10,4 +10,5 @@ public class Magicien extends Classe {
 
     public void etudierGrimoire() {
         // TODO implement here}
+    }
 }

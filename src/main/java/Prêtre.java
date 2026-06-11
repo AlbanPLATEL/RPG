@@ -10,4 +10,5 @@ public class Prêtre extends Classe {
 
     public void bénédictionGroupe() {
         // TODO implement here}
+    }
 }

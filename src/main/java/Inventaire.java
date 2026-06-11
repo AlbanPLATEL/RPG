@@ -1,58 +1,61 @@
-import java.io.*;
 import java.util.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Inventaire {
-    private List<Items> slots;
+    private final List<Items> slots;
 
     public Inventaire() {
+        this.slots = new ArrayList<>();
     }
 
-    public void voirItems() {
-        // TODO implement here
+    public void ouvrirInventaire(Scanner scanner) {
+        boolean ouvrir = true;
+        scanner.nextLine();
+        String text = "";
+
+        while (ouvrir) {
+            System.out.println("===== INVENTAIRE =====");
+            if (slots.isEmpty()) {
+                System.out.println("Votre inventaire est vide.");
+            } else {
+                for (int i = 0; i < slots.size(); i++) {
+                    System.out.println(i + " : " + slots.get(i).getNom());
+                }
+            }
+            try {
+                text = scanner.nextLine();
+            } catch (Exception e) {
+                System.out.println("Entrée invalide.");
+            }
+            if (text.equals("FIN") || text.equals("Fin") ) {
+                ouvrir = false;
+            }
+        }
     }
 
-    public void ouvrirInventaire() {
-        // TODO implement here
+    public void ajouterItem(Items item) {
+        if (slots.size() < 20) {
+            slots.add(item);
+        }
     }
 
-    public void fermerInventaire() {
-        // TODO implement here
-    }
-
-    public void utiliserConsommables(Consommables c) {
-        // TODO implement here
-    }
-
-    public void utiliserNonConsommables(Non Consommables c) {
-        // TODO implement here
-    }
-
-    public void equiperArmes(Armes a ) {
-        // TODO implement here
-    }
-
-    public void equiperArmure(Armures a) {
-        // TODO implement here
-    }
-
-    public void equiperBouclier(Bouclier b) {
-        // TODO implement here
-    }
-
-    public void ajouterItem() {
-        // TODO implement here
-    }
-
-    public void retirerItem() {
-        // TODO implement here
+    public void retirerItem(int index) {
+        if (index >= 0 && index < slots.size()) {
+            slots.remove(index);
+        }
     }
 
     public void trierPar() {
         // TODO implement here
     }
 
-    public void chercherItem() {
+    public void chercherItem(String nom) {
         // TODO implement here
     }
+
+    public List<Items> getContenu() {
+        return slots;
+    }
+
 }

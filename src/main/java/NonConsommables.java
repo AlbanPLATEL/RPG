@@ -2,11 +2,11 @@ import java.io.*;
 import java.util.*;
 
 
-public class Non Consommables extends Items {
+public class NonConsommables extends Items {
     private int quantite;
     private boolean stackable;
 
-    public Non Consommables() {
+    public NonConsommables() {
     }
 
     public void utiliser() {

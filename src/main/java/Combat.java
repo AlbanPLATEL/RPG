@@ -6,7 +6,6 @@ public class Combat {
     private UUID id;
     private int tour;
     public List<Combat> ordreInitiative;
-    private EtatCombat etat;
 
     public Combat() {
     }

@@ -10,4 +10,5 @@ public class Guerrier extends Classe {
 
     public void postureDefensive() {
         // TODO implement here}
+    }
 }

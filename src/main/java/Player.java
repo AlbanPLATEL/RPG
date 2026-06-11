@@ -1,29 +1,75 @@
-import java.io.*;
 import java.util.*;
 
-
-public class Player extends Entité implements Combattable, Saveable {
-    private int age;
+public class Player extends Entite {
     private int HP;
     private int XP;
     private int PM;
-    private int défense;
+    private int armure;
+    private int bouclier;
     private int or;
     private int niveau;
     private Statistique statistiques;
     private Equipement équipement;
     private List<Effet> effetsActifs;
     private int pointsCompétence;
+    private Inventaire inventaire;
 
     public Player() {
+        super();
+        Random random = new Random();
+        HP = 100;
+        armure = random.nextInt(4);
+        this.nom = "Aventurier";
+        niveau = 0;
+        XP = 0;
+        inventaire = new Inventaire();
     }
 
-    public void ouvrirInterface(Interface o) {
-        // TODO implement here
+    public void attaquerEnnemi(Ennemi ennemi) {
+        Random random = new Random();
+        int degats = random.nextInt(11);
+        int nouveauEnnemiHP = ennemi.getHP() - degats;
+        ennemi.setHP(Math.max(0, nouveauEnnemiHP)); // Empêche les HP négatifs
+        System.out.println("\nVous frappez l'ennemi et lui infligez " + degats + " dégâts !" );
+
+        if (ennemi.getHP() <= 0){
+            System.out.println("Mort de l'ennemi !");
+            gagnerXP(ennemi);
+        }
     }
 
-    public void attaquerEnnemi(Ennemi e) {
-        // TODO implement here
+    public void defendreEnnemi(Ennemi ennemi) {
+        Random random = new Random();
+        System.out.println("Vous vous protégez avec votre bouclier.");
+        int valeurBouclier = random.nextInt(6);
+        this.setBouclier(valeurBouclier);
+        System.out.println("Vous levez votre bouclier : " + valeurBouclier);
+    }
+
+    public void jouerTour(Ennemi ennemi, Scanner scanner) {
+        System.out.print("\nVotre choix : ");
+        int choix = 0;
+        try {
+            choix = scanner.nextInt();
+        } catch (Exception e) {
+            System.out.println("Entrée invalide.");
+        }
+        if (choix == 1) {
+            //Logique d'attaque
+            this.setBouclier(0);
+            attaquerEnnemi(ennemi);
+        }
+        else if (choix == 2) {
+            // Logique du bouclier
+            defendreEnnemi(ennemi);
+        }
+        else if (choix == 3) {
+            inventaire.ouvrirInventaire(scanner);
+        }
+    }
+
+    public void ouvrirInventaire(Scanner scanner) {
+        inventaire.ouvrirInventaire(scanner);
     }
 
     public void accepterQuete(Quête q) {
@@ -34,8 +80,17 @@ public class Player extends Entité implements Combattable, Saveable {
         // TODO implement here
     }
 
-    public void gagnerXP() {
-        // TODO implement here
+    public void gagnerXP(Ennemi ennemi) {
+        if (!ennemi.estVivant()){
+            XP += 2;
+        }
+    }
+
+    public void niveau(){
+        if (XP == 100){
+         niveau++;
+         System.out.println("Félicitation ! Vous avez gagner un niveau.");
+        }
     }
 
     public void choisirClasse(Classe c) {
@@ -54,21 +109,6 @@ public class Player extends Entité implements Combattable, Saveable {
         // TODO implement here
     }
 
-    public int getNiveau() {
-        // TODO
-        return 0; implement here
-    }
-
-    public int getExperience() {
-        // TODO
-        return 0; implement here
-    }
-
-    public Statistique getStatistiques() {
-        // TODO
-        return null; implement here
-    }
-
     public void appliquerEffet() {
         // TODO implement here
     }
@@ -81,29 +121,74 @@ public class Player extends Entité implements Combattable, Saveable {
         // TODO implement here
     }
 
-    public void attaquer() {
-        // TODO implement Combattable.attaquer() here
+    public void utiliserConsommables(Consommables c) {
+        // TODO implement here
     }
 
-    public void subirDegats() {
-        // TODO implement Combattable.subirDegats() here
+    public void utiliserNonConsommables(NonConsommables c) {
+        // TODO implement here
+    }
+
+    public void equiperArmes(Armes a ) {
+        // TODO implement here
+    }
+
+    public void equiperArmure() {
+        // TODO implement here
+    }
+
+    public void equiperBouclier() {
+        // TODO implement here
     }
 
     public boolean estVivant() {
-        // TODO
-        return false; implement Combattable.estVivant() here
+        return HP > 0;
     }
 
-    public int getPuissanceAttaque() {
-        // TODO
-        return 0; implement Combattable.getPuissanceAttaque() here
+    public int getNiveau() {
+        return niveau;
     }
 
-    public void sauvegarder() {
-        // TODO implement Saveable.sauvegarder() here
+    public void setNiveau(int niveau) {
+        this.niveau = niveau;
     }
 
-    public void charger() {
-        // TODO implement Saveable.charger() here
+    public int getXP() {
+        return XP;
+    }
+
+    public void setXP(int XP) {
+        this.XP = XP;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
+
+    public int getArmure() {
+        return armure;
+    }
+
+    public int setArmure(int armure) {
+        this.armure = armure;
+        return this.armure;
+    }
+
+    public int getBouclier() {
+        return bouclier;
+    }
+
+    public int setBouclier(int bouclier) {
+        this.bouclier = bouclier;
+        return this.bouclier;
+    }
+
+    @Override
+    public String getNom() {
+        return (this.nom == null || this.nom.isEmpty()) ? "Aventurier" : this.nom;
     }
 }

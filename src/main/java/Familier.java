@@ -1,8 +1,4 @@
-import java.io.*;
-import java.util.*;
-
-
-public class Familier extends Entité {
+public class Familier extends Entite {
     private int id;
     private String nom;
     private String age;

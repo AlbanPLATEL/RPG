@@ -10,4 +10,5 @@ public class Moine extends Classe {
 
     public void paumeVibratoire() {
         // TODO implement here}
+    }
 }

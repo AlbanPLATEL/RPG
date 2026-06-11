@@ -10,4 +10,5 @@ public class Rôdeur extends Classe {
 
     public void tirDansLoeil() {
         // TODO implement here}
+    }
 }

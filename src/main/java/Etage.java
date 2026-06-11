@@ -1,11 +1,10 @@
-import java.io.*;
 import java.util.*;
 
 
 public class Etage implements Observable {
     private int id;
     private String nom;
-    private List<Entité> entités;
+    private List<Entite> entites;
     private List<PNJ> PNJ;
 
     public Etage() {

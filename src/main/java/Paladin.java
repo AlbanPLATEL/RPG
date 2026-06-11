@@ -10,4 +10,5 @@ public class Paladin extends Classe {
 
     public void impositionDesMains() {
         // TODO implement here}
+    }
 }

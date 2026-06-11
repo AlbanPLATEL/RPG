@@ -1,64 +1,50 @@
-
-import java.io.*;
 import java.util.*;
 
-/**
- * 
- */
 public abstract class Items {
 
-    /**
-     * Default constructor
-     */
-    public Items() {
-    }
-
-    /**
-     * 
-     */
     protected UUID id;
-
-    /**
-     * 
-     */
     protected String nom;
-
-    /**
-     * 
-     */
     protected String description;
-
-    /**
-     * 
-     */
     protected int valeur;
-
-    /**
-     * 
-     */
     protected Rareté rareté;
 
-
-
-    /**
-     * @param c
-     */
-    public void utiliserConsommables(Consommables c) {
-        // TODO implement here
+    public Items() {
+        this.id = UUID.randomUUID();
+        this.nom = "";
+        this.description = "";
+        this.valeur = 0;
+        this.rareté = null;
     }
 
-    /**
-     * @param c
-     */
-    public void utiliserNonConsommables(Non Consommables c) {
-        // TODO implement here
+    public String getNom() {
+        return nom;
     }
 
-    /**
-     * 
-     */
-    public void utiliser() {
-        // TODO implement here
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getValeur() {
+        return valeur;
+    }
+
+    public void setValeur(int valeur) {
+        this.valeur = valeur;
+    }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 }

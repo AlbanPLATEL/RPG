@@ -1,9 +1,4 @@
-import java.io.*;
-import java.util.*;
-
-
-public class PNJ extends Entité implements Interactable {
-    private DialogueTree dialogues;
+public class PNJ extends Entite implements Interactable {
     private boolean estMarchand;
 
     public PNJ() {

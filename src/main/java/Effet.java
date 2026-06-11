@@ -1,7 +1,3 @@
-import java.io.*;
-import java.util.*;
-
-
 public class Effet {
     protected String nom;
     protected int duree;

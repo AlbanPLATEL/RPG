@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Monde {
     private String nom;
-    private Carte<String, Etage> zones;
 
     public Monde() {
     }

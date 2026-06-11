@@ -3,7 +3,6 @@ import java.util.*;
 
 
 public class CapacitePassive extends Capacité {
-    private Declencheur declencheur;
     private int probabiliteActivation;
 
     public CapacitePassive() {

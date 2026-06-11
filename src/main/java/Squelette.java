@@ -10,7 +10,9 @@ public class Squelette extends Ennemi {
 
     public void danseMacabre() {
         // TODO implement here}
+    }
 
     public void lancerOs() {
         // TODO implement here}
+    }
 }

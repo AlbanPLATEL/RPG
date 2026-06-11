@@ -4,7 +4,6 @@ import java.util.*;
 
 public class EffetBuff extends Effet {
     private Statistique statsBonus;
-    private TypeBuff type;
 
     public EffetBuff() {
     }

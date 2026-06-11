@@ -7,9 +7,6 @@ public enum SlotEquipement {
 
     SlotArme,
 
-    SlotArme,
-
     SlotConsommable,
 
-    SlotConsommable
 }

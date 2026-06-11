@@ -10,7 +10,8 @@ public class Zombie extends Ennemi {
 
     public void morsureInfectieuse(Player cible) {
         // TODO implement here}
-
-    public void gemissementSourd() {
+    }
+    public void gemissementSourd () {
         // TODO implement here}
+    }
 }

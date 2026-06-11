@@ -8,7 +8,6 @@ public class Quête {
     private String description;
     private PNJ donneur;
     private List<Objectif> objectifs;
-    private Récompense récompenses;
 
     public Quête() {
     }

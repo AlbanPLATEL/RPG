@@ -11,3 +11,4 @@ public class Druide extends Classe {
     public void métamorphose() {
         // TODO implement here}
 }
+}

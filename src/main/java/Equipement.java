@@ -3,7 +3,6 @@ import java.util.*;
 
 
 public class Equipement {
-    private Map<SlotEquipement> slots;
 
     public Equipement() {
     }
