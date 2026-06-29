@@ -2,7 +2,7 @@ public class Familier extends Entite {
     private int id;
     private String nom;
     private String age;
-    private Rareté rareté;
+    private Rarete rarete;
     private int XP;
 
     public Familier() {

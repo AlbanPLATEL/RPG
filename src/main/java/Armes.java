@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Armes extends Items {
+public class Armes {
     private int dégâtsMin;
     private int dégâtsMax;
     private int vitesseAttaque;

@@ -1,19 +1,21 @@
 import java.util.*;
 
-public abstract class Items {
+public class Items {
 
     protected UUID id;
     protected String nom;
     protected String description;
     protected int valeur;
-    protected Rareté rareté;
+    protected Rarete rarete;
+    protected String type;
 
-    public Items() {
+    public Items(String nom, String type, String description) {
         this.id = UUID.randomUUID();
-        this.nom = "";
-        this.description = "";
+        this.nom = nom;
+        this.type = type;
+        this.description = description;
         this.valeur = 0;
-        this.rareté = null;
+        this.rarete = null;
     }
 
     public String getNom() {
@@ -46,5 +48,21 @@ public abstract class Items {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public Rarete getRarete() {
+        return rarete;
+    }
+
+    public void setRarete(Rarete rarete) {
+        this.rarete = rarete;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

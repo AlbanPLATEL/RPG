@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Armure extends Items {
+public class Armure {
     private int pointArmure;
     private String typeArmure;
 

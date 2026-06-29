@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Boucliers extends Items {
+public class Boucliers {
 
     public Boucliers() {
     }

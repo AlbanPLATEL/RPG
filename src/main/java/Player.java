@@ -12,7 +12,8 @@ public class Player extends Entite {
     private Equipement equipement;
     private List<Effet> effetsActifs;
     private int pointsCompetence;
-    private Inventaire inventaire;
+    private final Inventaire inventaire;
+    int monstresMort;
 
     public Player() {
         super();
@@ -24,6 +25,7 @@ public class Player extends Entite {
         XP = 0;
         inventaire = new Inventaire();
         OR = 0;
+        monstresMort = 0;
     }
 
     public void attaquerEnnemi(Ennemi ennemi) {
@@ -47,50 +49,96 @@ public class Player extends Entite {
         System.out.println("Vous levez votre bouclier : " + valeurBouclier);
     }
 
-    public void jouerTour(Ennemi ennemi, Scanner scanner) {
+    public boolean jouerTour(Ennemi ennemi, Scanner scanner) {
+        boolean combatEnCours = true;
         System.out.print("\nVotre choix : ");
-        int choix = 0;
+        String choix = " ";
         try {
-            choix = scanner.nextInt();
+            choix = scanner.nextLine();
         } catch (Exception e) {
             System.out.println("Entrée invalide.");
         }
-        if (choix == 1) {
-            //Logique d'attaque
-            this.setBouclier(0);
-            attaquerEnnemi(ennemi);
+        switch (choix) {
+            case "1":
+                //Logique d'attaque
+                this.setBouclier(0);
+                attaquerEnnemi(ennemi);
+                break;
+            case "2":
+                // Logique du bouclier
+                defendreEnnemi(ennemi);
+                break;
+            case "3":
+                //Ouverture de l'inventaire
+                ouvrirInventaire(scanner);
+                break;
+
+            case "4":
+                Random random = new Random();
+                int number = random.nextInt(100)+1;
+                if (number < 50) {
+                    System.out.println("Par chance, vous avez réussi à fuir.");
+                    return combatEnCours = false;
+                }
+                else{
+                    System.out.println("Malheureusement vous n'avez pas réussi à fuir.");
+                }
+                break;
         }
-        else if (choix == 2) {
-            // Logique du bouclier
-            defendreEnnemi(ennemi);
-        }
-        else if (choix == 3) {
-            inventaire.ouvrirInventaire(scanner);
-        }
+        return true;
     }
 
     public void ouvrirInventaire(Scanner scanner) {
-        inventaire.ouvrirInventaire(scanner);
+        this.inventaire.ouvrirInventaire(scanner);
     }
 
-    public void accepterQuete(Quête q) {
-        // TODO implement here
+    public void parlerPNJ(PNJ pnj, Scanner scanner) {
+        pnj.parlerJoueur(this, scanner);
     }
 
-    public void récupérerButin() {
-        // TODO implement here
+    public void consulterQuete(PNJ pnj, Scanner scanner) {
+        if (pnj.accepterquete){
+            System.out.println("==========================");
+            System.out.println("   Tableau de Quêtes    ");
+            System.out.println("==========================");
+            System.out.println("Quête en cours : Tuez 5 monstres");
+            System.out.println("Monstres tués : " + monstresMort + " / 5");
+            if (monstresMort >= 5) {
+                System.out.println("Bravo ! Vous avez terminé votre quête.");
+                System.out.println("Retournez voir le PNJ pour récupérer votre récompense.");
+            } else {
+                System.out.println("Retournez au front, vous n'avez pas tué suffisamment de monstres.");
+            }
+        } else {
+            System.out.println("Vous n'avez pas de quête en cours.");
+        }
+    }
+
+    public void accepterQuete(PNJ pnj) {
+        if(pnj.accepterquete = true){
+            System.out.println("Vous avez accepter une quête !");
+        }
+    }
+
+    public void recupererButin() {
+        this.XP += PNJ.getXP();
+        this.OR += PNJ.getOR();
     }
 
     public void gagnerLoot(Ennemi ennemi) {
-       this.XP = ennemi.getXP();
-       this.OR = ennemi.getOR();
+       this.XP += ennemi.getXP();
+       this.OR += ennemi.getOR();
     }
 
     public void niveau(){
-        if (XP == 100){
+        if (XP >= 100){
          niveau++;
          System.out.println("Félicitation ! Vous avez gagner un niveau.");
         }
+    }
+
+    public void utiliserItem() {
+        //todo
     }
 
     public void choisirClasse(Classe c) {
@@ -118,14 +166,6 @@ public class Player extends Entite {
     }
 
     public void vendre() {
-        // TODO implement here
-    }
-
-    public void utiliserConsommables(Consommables c) {
-        // TODO implement here
-    }
-
-    public void utiliserNonConsommables(NonConsommables c) {
         // TODO implement here
     }
 
@@ -193,6 +233,10 @@ public class Player extends Entite {
     public int setBouclier(int bouclier) {
         this.bouclier = bouclier;
         return this.bouclier;
+    }
+
+    public Inventaire getInventaire() {
+        return inventaire;
     }
 
     @Override

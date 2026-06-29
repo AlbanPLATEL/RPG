@@ -1,7 +1,7 @@
 
 
 
-public enum Rareté {
+public enum Rarete {
 
     Commun,
 

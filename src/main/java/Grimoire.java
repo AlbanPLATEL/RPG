@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Grimoire extends Items {
+public class Grimoire {
     private List<Sorts> sorts;
 
     public Grimoire() {
