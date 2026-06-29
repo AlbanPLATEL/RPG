@@ -70,6 +70,7 @@ public class Main {
                         System.out.println("\n--- Fin du combat ---");
                         if (ennemi.getHP() <= 0){
                             ennemi.dropLoot(player);
+                            player.niveau();
                         }
 
                         if (pnj.accepterquete) {
@@ -100,9 +101,7 @@ public class Main {
             }
         }
 
-        System.out.println("\nTour : " + tour);
         System.out.println("\nNom de l'Aventurier : " + player.getNom());
         System.out.println("HP du joueur : " + player.getHP() + " | Défense : " + player.getArmure() + " | Niveau : " + player.getNiveau() + " | XP : " + player.getXP() + " | OR : " + player.getOR());
-        System.out.println("HP de l'ennemi : " + ennemi.getHP() + " | Niveau : " + player.getNiveau());
     }
 }

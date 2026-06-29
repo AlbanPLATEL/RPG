@@ -75,7 +75,7 @@ public class PNJ extends Entite {
             case "3":
                 if(player.monstresMort >= 5 && accepterquete == true) {
                     System.out.println("Quête terminée ! Bien joué, voici ta récompense.");
-                    player.recupererButin();
+                    player.recupererButin(this);
                     player.monstresMort = 0;
                     accepterquete = false;
                 } else if(accepterquete == false) {
@@ -91,7 +91,7 @@ public class PNJ extends Entite {
         }
     }
 
-    public static int getXP() {
+    public int getXP() {
         return XP;
     }
 
@@ -99,7 +99,7 @@ public class PNJ extends Entite {
         PNJ.XP = XP;
     }
 
-    public static int getOR() {
+    public int getOR() {
         return OR;
     }
 

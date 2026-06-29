@@ -1,13 +1,9 @@
-import java.io.*;
-import java.util.*;
-
-
-public class Archétype {
+public class Archetype {
     private int id;
     private String nomArchétype;
     private String description;
 
-    public Archétype() {
+    public Archetype() {
     }
 
     public void voirArchetype() {

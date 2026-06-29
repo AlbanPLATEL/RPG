@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Player extends Entite {
     private int HP;
-    private int XP;
+    public int XP;
     private int PM;
     private int armure;
     private int bouclier;
@@ -14,6 +14,7 @@ public class Player extends Entite {
     private int pointsCompetence;
     private final Inventaire inventaire;
     int monstresMort;
+    int degats;
 
     public Player() {
         super();
@@ -21,16 +22,15 @@ public class Player extends Entite {
         HP = 100;
         armure = random.nextInt(4);
         this.nom = "Aventurier";
-        niveau = 0;
+        niveau = 1;
         XP = 0;
         inventaire = new Inventaire();
         OR = 0;
         monstresMort = 0;
+        degats = random.nextInt(11);
     }
 
     public void attaquerEnnemi(Ennemi ennemi) {
-        Random random = new Random();
-        int degats = random.nextInt(11);
         int nouveauEnnemiHP = ennemi.getHP() - degats;
         ennemi.setHP(Math.max(0, nouveauEnnemiHP)); // Empêche les HP négatifs
         System.out.println("\nVous frappez l'ennemi et lui infligez " + degats + " dégâts !" );
@@ -89,7 +89,7 @@ public class Player extends Entite {
     }
 
     public void ouvrirInventaire(Scanner scanner) {
-        this.inventaire.ouvrirInventaire(scanner);
+        this.inventaire.ouvrirInventaire(scanner,this);
     }
 
     public void parlerPNJ(PNJ pnj, Scanner scanner) {
@@ -115,14 +115,14 @@ public class Player extends Entite {
     }
 
     public void accepterQuete(PNJ pnj) {
-        if(pnj.accepterquete = true){
+        if(pnj.accepterquete){
             System.out.println("Vous avez accepter une quête !");
         }
     }
 
-    public void recupererButin() {
-        this.XP += PNJ.getXP();
-        this.OR += PNJ.getOR();
+    public void recupererButin(PNJ pnj) {
+        this.XP += pnj.getXP();
+        this.OR += pnj.getOR();
     }
 
     public void gagnerLoot(Ennemi ennemi) {
@@ -131,21 +131,24 @@ public class Player extends Entite {
     }
 
     public void niveau(){
-        if (XP >= 100){
+        if (XP >= niveau * 50){
          niveau++;
          System.out.println("Félicitation ! Vous avez gagner un niveau.");
-        }
-    }
+         XP = 0;
+         HP = getHP() + (niveau - 1) * 20;
+         armure += 2;
+         OR += 5;
+        } else{
+            System.out.println("XP actuel: " + getXP());
 
-    public void utiliserItem() {
-        //todo
+        }
     }
 
     public void choisirClasse(Classe c) {
         // TODO implement here
     }
 
-    public void choisirArchétype(Archétype c) {
+    public void choisirArchetype(Archetype c) {
         // TODO implement here
     }
 
